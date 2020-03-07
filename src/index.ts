@@ -14,6 +14,11 @@ wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(message: string) {
         const player = JSON.parse(message);
         players[player.id] = player;
+        (ws as any).playerId = player.id;
+    });
+
+    ws.on('close', () => {
+        delete players[(ws as any).playerId];
     });
 
     ws.send(JSON.stringify(Object.values(players)));
