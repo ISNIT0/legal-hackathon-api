@@ -1,10 +1,11 @@
 import * as WebSocket from 'ws';
+const PORT = Number(process.env.PORT) || 8081;
 
 const players: any = {};
 
 
-const wss = new WebSocket.Server({ port: 8081 });
-console.log(`Listening on port [8081]`);
+const wss = new WebSocket.Server({ port: PORT });
+console.log(`Listening on port [${PORT}]`);
 
 const connections: any[] = [];
 
